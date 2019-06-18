@@ -25,7 +25,7 @@
     $G$       & 世代時間（年）．$\sum_{s=S_{\mathrm{min}}}^\infty (s \exp(-\sum M_{t,s}) m_{t, s})/(\exp(-M_{t,s}) m_{t,s})$ と定義する．\\
     $\varepsilon_t$  & $t$年における加入誤差\\
     $\sigma$  & 再生産関係の予測値と観測値の対数残差における標準偏差\\
-    $\rho$  & 自己相関係数\\    
+    $\rho$  & 自己相関係数\\
     $a$, $b$  & 再生産関係で推定される再生産パラメータ\\ \hline
   \end{tabular}
 \end{table}
@@ -61,12 +61,12 @@
 \subsection{リッカー(RI)型再生産関係}
 \begin{eqnarray}
   N_{t,S_{\mathrm{min}}}= a SB_{t-S_{\mathrm{min}}}   \exp{(-b SB_{t-S_{\mathrm{min}}})}
-  \label{RI1}  
+  \label{RI1}
 \end{eqnarray}
 または
 \begin{eqnarray}
   N_{t,S_{\mathrm{min}}}= a SB_{t-S_{\mathrm{min}}}   \exp{(-\frac{SB_{t-S_{\mathrm{min}}}}{b})}
-  \label{RI2}    
+  \label{RI2}
 \end{eqnarray}
 
 式\ref{BH2},\ref{RI2}はパラメータbがHSのときのパラメータbと同じ単位を持つため，HSの場合とbの次元を合わせられるため，BH, RIの当てはめにおいては，今後は式\ref{BH2},\ref{RI2}の使用が好ましい．
@@ -74,7 +74,7 @@
 \section{パラメータ推定}
 　再生産関係の推定には最小二乗法または最小絶対値法を使用する．最小二乗法の場合には
 \begin{eqnarray}
-  \sum_{t=T_1}^{T_2} [ \log (N_{t,S_{\mathrm{min}}}) - \log (\hat{N}_{t,S_{\mathrm{min}}}) ]^2   
+  \sum_{t=T_1}^{T_2} [ \log (N_{t,S_{\mathrm{min}}}) - \log (\hat{N}_{t,S_{\mathrm{min}}}) ]^2
 \end{eqnarray}
 , 最小絶対値法の場合には
 \begin{eqnarray}
@@ -87,7 +87,7 @@
 \begin{eqnarray}
   \log (N_{t,S_{\mathrm{min}}}) = \log (\hat{N}_{t,S_{\mathrm{min}}}) + \rho [ \log (N_{t-1,S_{\mathrm{min}}})-\log(\hat{N}_{t-1,S_{\mathrm{min}}}) ] + \varepsilon_t
 \end{eqnarray}
-で表される\cite{thorson}\cite{johnson}．自己相関係数$\rho$の推定には，再生産関係式のパラメータ$a$, $b$を推定してから，事後的に残差を自己回帰する手法が推奨される．正確尤度 (exact likelihood) を用いて，$a$,$b$と$\rho$を同時に推定する手法も考えられるが，最尤推定値を得ることが難しいという問題点や，推定値にバイアスが生じるといった問題点がある\cite{johnson}．自己相関を推定したほうがよいかどうかは，残差の自己相関係数が有意かどうかやAIC等を用いて判断される．
+で表される\cite{thorson}\cite{johnson}．自己相関係数$\rho$の推定には，再生産関係式のパラメータ$a$, $b$を推定してから，事後的に残差の自己回帰を最尤法で行う手法が推奨される．正確尤度 (exact likelihood) を用いて，$a$,$b$と$\rho$を同時に推定する手法も考えられるが，最尤推定値を得ることが難しいという問題点や，推定値にバイアスが生じるといった問題点がある\cite{johnson}．自己相関を推定したほうがよいかどうかは，残差の自己相関係数が有意かどうかやAIC等を用いて判断される．
 
 \section{将来予測}
 \subsection{加入尾数の計算}
@@ -106,12 +106,12 @@
 
 となる (Johnson et al. 2016)．$\sigma^2$は，加入量と再生産関係の残差から以下の式で得られるものを使用する：
 \begin{eqnarray}
-  \sigma^2 = \frac{1}{T_2-T_{1}+1} \sum_{t=T_1}^{T_2} |\log (N_{t,S_{\mathrm{min}}}) -\log (\hat{N}_{t,S_{\mathrm{min}} } ) |  
+  \sigma^2 = \frac{1}{T_2-T_{1}+1} \sum_{t=T_1}^{T_2} |\log (N_{t,S_{\mathrm{min}}}) -\log (\hat{N}_{t,S_{\mathrm{min}} } ) |
 \end{eqnarray}
 また，残差のリサンプリングを行う場合は
 \begin{eqnarray}
   \varepsilon_t^k \sim (\mathrm{random} \mathrm{draw} \mathrm{from}  R_{t={T_1,…,T_2}} ) + \log (\mathrm{median} (\varepsilon_{t={T_1,…,T_2}})/\mathrm{mean} (\varepsilon_{t={T_1,...,T_2}}))
-        \label{resample_recruit}        
+        \label{resample_recruit}
 \end{eqnarray}
 とする．ここで，$\varepsilon_t$は資源評価年における再生産関係の対数残差．残差の分布の仮定によらず，決定論的予測と確率分布の平均値が一致するように，平均値と中央値の違いを補正（式\ref{norm_recruit}では$-0.5\sigma^2$, 式\ref{resample_recruit}では $+\log (\mathrm{median} (\varepsilon_{t={T_1,…,T_2}})/\mathrm{mean} (\varepsilon_{t={T_1,...,T_2}}))$の項に相当）する必要がある．推定資源量の不確実性が評価されている場合は，将来予測でもこれらの不確実性を考慮することが望ましい\cite{ichinokawa}．
 
