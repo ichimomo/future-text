@@ -9,30 +9,33 @@
   \Large (平成31年度研究機関会議版)
 }
 \author{ABCWG}
-\date{2019/06/19}
+\date{2019/06/21}
 \maketitle
 
 \section{基本的な式と記号の説明}
-表\ref{table_definition}に本資料で使われる数式の記号の定義について示した．また，親魚量に対して平均的な加入尾数を予測するための再生産関係式はホッケー・スティック(HS)\cite{hockey}，ベバートン・ホルト(BH)\cite{beverton}，リッカー(RI)\cite{ricker}型再生産関係が通常用いられる．HS，BH，RIの定義と，それぞれの再生産関係式から計算される加入尾数の期待値$\hat{N}_{S_{\mathrm{min}},t}$を使った個体群動態の基本的な式を以下に示した． 
+表\ref{table_definition}に本資料で使われる主要な数式記号の定義について示した．また，親魚量に対して平均的な加入尾数を予測するための再生産関係式はホッケー・スティック(HS)\cite{hockey}，ベバートン・ホルト(BH)\cite{beverton}，リッカー(RI)\cite{ricker}型再生産関係が通常用いられる．HS，BH，RIの定義と，それぞれの再生産関係式から計算される加入尾数を使った個体群動態の基本的な式を以下に示した． 
 
 \begin{table}[h]
   \begin{tabular}{cp{14cm}} \hline
     記号    & 　説明 \\ \hline
-    $t$ & 時間 (time) の次元を表す添え字．通常は年なので，ここでは$t$年といった表記を使用する．資源評価開始年を$t=1$, 資源評価最終年を$t=T_3$とする．将来予測開始年は$t=T_{3}+1$，一定の漁獲圧で漁獲して平衡状態に達したときの年を$T_4$とする．また，再生産関係の推定のためにデータを用いる最初の加入年を$T_1$，最後の加入年を$T_2$とする．再生産関係推定に用いるデータ数は$n=T_2-T_1+1$とする．通常は，$1 \leq T_1 < T_2 \leq T_3 \ll T_4$．\\
-    $s$ & 成長段階 (stage) を表す添え字．通常は年齢なので，ここでは$s$歳といった表記を使用する．$s=S_{\mathrm{min}},...,S_{\mathrm{max}}$で，$S_{\mathrm{min}}$は加入年齢，$S_{\mathrm{max}}$はプラスグループ.\\ % 次年度版はaにする
-    $N_{s,t}$ & $t$年$s$歳の資源尾数．加入尾数は$N_{s_{\mathrm{min}},t}$ で表される．\\
-    $F_{s,t}$ & $t$年$s$歳における漁獲死亡係数．\\
-    $M_{s,t}$ & $t$年$s$歳における自然死亡係数\\
-    $m_{s,t}$ & $t$年$s$歳における成熟率\\
-    $w_{s,t}$ & 親魚量を計算するときの$t$年$s$歳の個体あたりの体重．\\
-    $v_{s,t}$ & 漁獲量を計算するときの$t$年$s$歳の個体あたりの体重．\\ % 資源量を計算するときの体重も追記する？当面は必要ないが，次回は追記するかも．
-    $S\!B_{t} $ & $t$年における親魚資源量．$S\!B_t=\sum_{s=S\mathrm{min}}^{S_{\mathrm{max}}}N_{s,t} w_{s,t} m_{s,t}$．\\
+    $t$ & 時間 (time) の次元を表す添え字．通常は年なので，ここでは$t$年といった表記を使用する．資源評価開始年を$t=1$, 資源評価最終年を$t=T_3$とする．将来予測開始年は$t=T_{3}+1$，一定の漁獲圧で漁獲して平衡状態に達したときの年を$T_4$とする．また，再生産関係の推定のためにデータを用いる最初の加入年を$T_1$，最後の加入年を$T_2$とする．通常は，$1 \leq T_1 < T_2 \leq T_3 \ll T_4$．\\
+    $s$ & 成長段階 (stage) を表す添え字．通常は年齢なので，ここでは$s$歳といった表記を使用する．$s=S_{\mathrm{min}},...,S_{\mathrm{max}}$で，$S_{\mathrm{min}}$は加入年齢，$S_{\mathrm{max}}$は$S_{\mathrm{max}}$歳以上をひとまとめにしたグループ（プラスグループ）.\\ % 次年度版はaにする
+    $N_{s,t}$ & $s$歳$t$年の資源尾数．たとえば加入尾数は$N_{s_{\mathrm{min}},t}$となる．\\
+    $F_{s,t}$ & $s$歳$t$年における漁獲死亡係数．\\
+    $M_{s,t}$ & $s$歳$t$年における自然死亡係数\\
+    $m_{s,t}$ & $s$歳$t$年における成熟率\\
+    $w_{s,t}$ & 親魚量を計算するときの$s$歳$t$年の個体あたりの体重．\\
+    $v_{s,t}$ & 漁獲量を計算するときの$s$歳$t$年の個体あたりの体重．\\ % 資源量を計算するときの体重も追記する？当面は必要ないが，次回は追記するかも．
+    $S\!B_{t} $ & $t$年の親魚資源量．$S\!B_t=\sum_{s=S\mathrm{min}}^{S_{\mathrm{max}}}N_{s,t} w_{s,t} m_{s,t}$．\\
     $k$      & 確率的な将来予測シミュレーションにおける各試行に対する添え字．将来予測の期間で各パラメータの右上につけて各試行ごとの値を示す．例えば，将来予測における加入尾数の場合は$N_{S_{\mathrm{min}},t}^k$, 親魚量の場合は$S\!B_t^k$のように使用する．$k=1,…,K$.\\
-    $G$       & 世代時間(年)．$\sum_{s=0}^\infty (s \exp(-\sum M_{s,t}) m_{s,t})/(\exp(-\sum M_{s,t}) m_{s,t})$ と定義する．\\ % Rの関数では加入年齢からになっていた．次バージョンでは０歳から計算するように修正すること\\
+    $\mathrm{obs}$  & 資源評価モデルにより得られた過去の資源評価値に対する添字．再生産関係を推定する際には観測値(observation)として取り扱うため，$\mathrm{obs}$と表記した．\\
+    $G$       & 世代時間(年)．$\sum_{s=0}^\infty (s \exp(-\sum_s M_{s,t}) m_{s,t})/(\exp(-\sum_s M_{s,t}) m_{s,t})$ と定義する．\\ % Rの関数では加入年齢からになっていた．次バージョンでは０歳から計算するように修正すること\\
+    $n$ & 再生産関係推定に用いるデータの数．$n=T_2-T_1+1$．\\    
     $\varepsilon_t$  & $t$年の再生産関係からの加入尾数の予測値と観測値の対数残差\\
     $\sigma$  & 再生産関係からの加入尾数の予測値と観測値の対数残差における標準偏差\\
     $\rho$  & 加入の対数値の残差の自己相関係数\\
-    $a$, $b$  & 再生産関係で推定されるパラメータ\\ \hline  % 次期バージョンではh, R0を表に出すパラメータとする．HSにおけるsteepnessは1-B_HS/B_0と定義
+    $\kappa$  & 将来予測における加入尾数のバイアス補正のための係数\\    
+    $a$, $b$  & 再生産関係で推定されるパラメータ．$a$は最大増加率，$b$は密度効果の大きさを示す．\\  \hline% 次期バージョンではh, R0を表に出すパラメータとする．HSにおけるsteepnessは1-B_HS/B_0と定義
   \end{tabular}
   \caption{本資料で用いられる数式の記号の定義}
   \label{table_definition} 
@@ -40,7 +43,7 @@
 
 \subsubsection*{ホッケー・スティック型再生産関係(HS)}
 \begin{equation}
-  \hat{N}_{S_{\mathrm{min}},t} = \begin{cases}
+  N_{S_{\mathrm{min}},t} = \begin{cases}
     a \times S\!B_{t-S_{\mathrm{min}}} & (S\!B_{t-S_{\mathrm{min}}} < b) \\
     a \times b                 & (S\!B_{t-S_{\mathrm{min}}} \geq b)
   \end{cases}
@@ -50,7 +53,7 @@
 
 \subsubsection*{ベバートン・ホルト型再生産関係(BH)}
 \begin{eqnarray}
-  \hat{N}_{S_{\mathrm{min}},t}=\frac{a S\!B_{t-S_{\mathrm{min}}}}{1 + b S\!B_{t-S_{\mathrm{min}}}}
+  N_{S_{\mathrm{min}},t}=\frac{a S\!B_{t-S_{\mathrm{min}}}}{1 + b S\!B_{t-S_{\mathrm{min}}}}
   \label{BH1}
 \end{eqnarray}
 %または  % 今回の会議用バージョンということで，この式の定義はもう載せない
@@ -61,7 +64,7 @@
 
 \subsubsection*{リッカー型再生産関係(RI)}
 \begin{eqnarray}
-  \hat{N}_{S_{\mathrm{min}},t}= a S\!B_{t-S_{\mathrm{min}}}   \exp{(-b S\!B_{t-S_{\mathrm{min}}})}
+  N_{S_{\mathrm{min}},t}= a S\!B_{t-S_{\mathrm{min}}}   \exp{(-b S\!B_{t-S_{\mathrm{min}}})}
   \label{RI1}
 \end{eqnarray}
 %または
@@ -76,19 +79,19 @@
 基本的な個体群動態式は年齢構造モデルで以下のように表す．
 \begin{equation}
   N_{s,t} = \begin{cases}
-      \hat{N}_{s,}  &     s = S_\mathrm{min} \\    
-      N_{s-1, t-1}  \exp(-M_{s-1,t-1}-F_{s-1,t-1} )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
-      N_{s-1, t-1}  \exp(-M_{s-1,t-1}-F_{s-1,t-1} ) + N_{s, t-1}  \exp(-M_{s,t-1}-F_{s,t-1}) &   s=S_{\mathrm{max}}
+    N_{S_{\mathrm{min}},t}  &     s = S_\mathrm{min} \\    
+    N_{s-1, t-1}  \exp(-M_{s-1,t-1}-F_{s-1,t-1} )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
+    N_{s-1, t-1}  \exp(-M_{s-1,t-1}-F_{s-1,t-1} ) + N_{s, t-1}  \exp(-M_{s,t-1}-F_{s,t-1}) &   s=S_{\mathrm{max}}
   \end{cases}
   \label{future_eq}
 \end{equation}
 
 \section{再生産関係式のパラメータ推定}
 まず，残差の自己相関を考慮せずにパラメータ$a$，$b$を推定する(\ref{estab})．このときは最小二乗法または最小絶対値法を使用する．さらに，残差の自己相関も考慮するかどうかを検討する(\ref{estrho})．
-\subsection{パラメータ$a$,$b$の推定\label{estab}}
+\subsection{パラメータ$a$，$b$の推定\label{estab}}
 観測値と再生産関係式からの予測値との残差 $\varepsilon_t (T_1 \leq t \leq T_2)$を
 \begin{eqnarray}
-  \varepsilon_t = \log (N_{S_{\mathrm{min}},t}) - \log (\hat{N}_{S_{\mathrm{min}},t}) 
+  \varepsilon_t = \log (N_{S_{\mathrm{min}},t}^{\mathrm{obs}}) - \log (N_{S_{\mathrm{min}},t})
 \end{eqnarray}
 と定義し，最小二乗法の場合には
 \begin{eqnarray}
@@ -100,96 +103,99 @@
 \end{eqnarray}
 を最小化することで，パラメータ$a$，$b$を推定する．最小絶対値法の方が，外れ値の影響を受けにくく，頑健な推定値が得られやすい．AIC等の情報量規準で使用される対数尤度は，最小二乗法の場合は正規分布，最小絶対値法の場合はラプラス分布を用いて計算される．どちらの最適化法を用いた場合でも，残差の標準偏差$\sigma$は
 \begin{eqnarray}
-  \sigma = \sqrt{\frac{1}{n} \sum_{t=T_1}^{T_2} \varepsilon_t}
+  \sigma = \sqrt{\frac{1}{n} \sum_{t=T_1}^{T_2} \varepsilon_t^2}
 \end{eqnarray}
-と定義し，将来予測ではここで計算された$\sigma$を用いて確率的なシミュレーションを実施する．
+と定義し，将来予測においては，ここで計算された$\sigma$を用いて確率的なシミュレーションを実施する．
 
 \subsection{残差の自己相関の有無を判断する\label{estrho}}
-推定された再生産パラメータ$a$,$b$のもとで，加入の予測値に対する観測値の残差$\varepsilon_t$に自己相関があるかどうかを検討する．具体的には，残差についての自己回帰モデル(式\ref{rho_eq})におけるパラメータ$\rho$の推定をおこなう．
+推定された再生産パラメータ$a$，$b$のもとで，加入の予測値に対する観測値の残差$\varepsilon_t$に自己相関があるかどうかを検討する．具体的には，残差についての自己回帰モデル(式\ref{rho_eq})におけるパラメータ$\rho$の推定をおこなう．
 \begin{eqnarray}
-  \varepsilon_t = \rho \varepsilon_{t-1} + \epsilon_t
+  \varepsilon_t = \rho \varepsilon_{t-1} + \xi_t
   \label{rho_eq}
 \end{eqnarray}
-ここで $\epsilon_t$は
+ここで $\xi_t$は
 \begin{eqnarray}
-  \epsilon_t \sim \mathrm{Normal}(0, (1-\rho^2) \sigma))
+  \xi_t \sim \mathrm{Normal}(0, (1-\rho^2) \sigma^2))\\
+  \sigma= ... 
 \end{eqnarray}
-である．自己相関の影響を除いたときの加入の残差の分散は$(1-\rho^2) \sigma$で，自己相関でも説明しきれなかったランダムな加入変動の大きさを示す．平成31年度研究機関会議でSDとして示されている数値は$\sqrt{(1-\rho^2) \sigma}$に対応する．
+である．自己相関の影響を除いたときの加入の残差の分散は$(1-\rho^2) \sigma^2$で，自己相関でも説明しきれなかったランダムな加入変動の大きさを示す．平成31年度研究機関会議でSDとして示されている数値は$\sqrt{(1-\rho^2) \sigma^2}$に対応する．
 
-自己相関係数$\rho$の推定には，本資料で示したように，再生産関係式のパラメータ$a$，$b$を推定してから，事後的に残差の自己回帰係数$\rho$を最尤法で行うやり方が推奨される．正確尤度 (exact likelihood) を用いて，$a$，$b$，$\rho$を同時に推定する方法も考えられるが，最尤推定値を得ることが難しい，推定値にバイアスが生じるといった問題点がある\cite{johnson}．{\bf また，HSを用いた時に推定値が不安定になるという現象も確認されている(未発表)}．自己相関を導入したほうがよいかどうかは，$\rho$が有意かどうかやAIC等を用いて判断する．
+自己相関係数$\rho$の推定には，本資料で示したように，再生産関係式のパラメータ$a$，$b$を推定してから，事後的に残差の自己回帰係数$\rho$を最尤法で行うやり方が推奨される．正確尤度 (exact likelihood) を用いて，$a$，$b$，$\rho$を同時に推定する方法も考えられるが，最尤推定値を得ることが難しい，推定値にバイアスが生じる，推定値が不安定になるなどの問題点がある\cite{johnson}．特に，HSを用いた時に局所解が複数存在し，推定値がさらに不安定になる現象も確認されている(未発表)．自己相関を導入したほうがよいかどうかは，$\rho$が統計的に有意かどうかやAIC等を用いて判断する．
 
 \section{管理基準値の推定}
-管理基準値は，推定された再生産関係パラメータと確率的な加入変動のもとで，漁獲係数を一定にした場合の平衡状態における資源量や漁獲量などから推定する．通常は，近年の代表的な年齢別漁獲係数$F_{\mathrm{cur},s}$に対して，選択率を保ったまま一律に漁獲圧を削減または増加させるような漁獲率一定のシナリオを想定する．この場合の将来の漁獲係数は$F_{\mathrm{cur},s}$に特定の乗数$\alpha$を乗じた$\alpha F_{\mathrm{cur},s}$となる．ここで$1-\alpha$は，目的とする管理基準値を得るために削減（または増加）すべき漁獲努力量の削減率（または増加率）と解釈される．年齢別漁獲係数$F_{\mathrm{cur},s}$は，通常，資源評価最終年から過去に$l$年遡ったときの年齢別漁獲係数の平均値が用いられ，以下のように計算される．
+管理基準値は，推定された再生産関係パラメータと確率的な加入変動のもとで，漁獲係数を一定にした場合の確率的な平衡状態(時系列的に平均値が一定)となるときの漁獲量や資源量の平均値などを使って推定する．通常は，近年の代表的な年齢別漁獲係数$F_{\mathrm{current},s}$に対して，選択率を保ったまま一律に漁獲圧を削減または増加させるような漁獲係数一定のシナリオを想定する．この場合の将来の漁獲係数は$F_{\mathrm{current},s}$に特定の乗数$\alpha$を乗じた$\alpha F_{\mathrm{current},s}$となる．ここで$1-\alpha$は，目的とする管理基準値を得るために削減（または増加）すべき漁獲努力量の削減率（または増加率）と解釈される．年齢別漁獲係数$F_{\mathrm{current},s}$は，通常，資源評価最終年から過去に$l$年遡ったときの年齢別漁獲係数の平均値が用いられ，以下のように計算される．
 \begin{eqnarray}
-  F\mathrm{cur}_s = \sum_{t=T_3-l+1}^{T_3}\frac{F_{s,t}}{l}
+  F\mathrm{current}_s = \sum_{t=T_3-l+1}^{T_3}\frac{F_{s,t}}{l}
 \end{eqnarray}
 
-確率的な将来予測における加入尾数は，親魚量からの加入の期待値$\hat{N}_{s,t}^k$にランダムな誤差$\exp (\varepsilon_t^k)$を乗じたものとして計算される．$\varepsilon_t^k$は，対数正規分布の誤差を仮定する場合には
+確率的な将来予測における加入尾数は，再生産関係式から計算される加入尾数にランダムな誤差$\exp (\varepsilon_t^k)$を乗じたものとして計算される．$\varepsilon_t^k$は，対数正規分布の誤差を仮定する場合には
 \begin{equation}
   \varepsilon_t^k \sim \begin{cases}
-    \mathrm{Normal} (-0.5\sigma^2,\sigma^2 ) & \rho=0 \\
-    \mathrm{Normal} (\rho \varepsilon_{t-1}^k - 0.5\sigma^2,(1-\rho^2) \sigma^2) & \rho>0
+    \mathrm{Normal} (0,\sigma^2 ) & \rho=0 \\
+    \mathrm{Normal} (\rho \varepsilon_{t-1}^k,(1-\rho^2) \sigma^2) & \rho>0
   \end{cases}
   \label{epsilon1}
 \end{equation}
 となる．また，残差リサンプリングによる将来予測を実施する場合には
 \begin{eqnarray}
-  \varepsilon_t^k \sim (\mathrm{random} \, \mathrm{draw} \, \mathrm{from} \, \varepsilon_{t={T_1,…,T_2}})-\sum_{t=T_1}^{T_2} \frac{\exp(\varepsilon_t)}{n}
+  \varepsilon_t^k \sim (\mathrm{random} \, \mathrm{draw} \, \mathrm{from} \, \varepsilon_{t={T_1,…,T_2}})
   \label{epsilon2}  
 \end{eqnarray}
-となる．それぞれの式における$-0.5\sigma^2$，$-\sum_{t=T_1}^{T_2} \frac{\exp(\varepsilon_t)}{n}$は，漁獲なしのときの親魚量$S\!B_0$の決定論的な値と，確率的予測値の平均が一致するようにするためのバイアス補正項である．
+となる．
 
 以上より，管理基準値計算のために実施する確率的シミュレーションにおける個体群動態式は以下となる．
 \begin{equation}
   N_{s,t}^k = \begin{cases}
-    \hat{N}_{s,t}^k \exp (\varepsilon_t^k) &     s = S_\mathrm{min} \\    
-      N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{cur},s} )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
-      N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{cur},s} ) + N_{s,t-1}^k  \exp(-M_{s,t-1} - \alpha F_{\mathrm{cur},s} ) &   s=S_{\mathrm{max}}
+    N_{s,t}^k \exp (\varepsilon_t^k + \kappa) &     s = S_\mathrm{min} \\    
+    N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{current},s} )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
+    N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{current},s} ) + N_{s,t-1}^k  \exp(-M_{s,t-1} - \alpha F_{\mathrm{current},s} ) &   s=S_{\mathrm{max}}
   \end{cases}
   \label{future_eq2}
 \end{equation}
-ここでは$t \geq T_3$で，$t=T_3$のときの$N_t^k$，$F_t^k$は資源評価から得られた資源尾数・漁獲死亡係数を用いる．管理基準値は，$\alpha$を様々に変え，十分平衡状態に達したと判断される$T_4$年における状態から推定する．経験的には，$T_4=T_3+20G$であれば十分平衡状態に達するようだが，系群によって平衡状態に十分達したと判断される年数を用いる．
+ここでは$t \geq T_3$で，$t=T_3$のとき$N_t^k=N_t^{\mathrm{obs}}$，$F_t^k=F_t^{\mathrm{obs}}$とする．$\kappa$は漁獲なしのときの親魚量$S\!B_0$の決定論的な値と，確率的予測値の平均を一致させるためのバイアス補正項で，対数正規分布を仮定する場合には$\kappa=-0.5\sigma^2$，残差リサンプリングをおこなう場合には$-\sum_{t=T_1}^{T_2} \frac{\exp(\varepsilon_t)}{n}$となる．
+
+管理基準値は，$\alpha$を様々に変え，十分平衡状態に達したと判断される$T_4$年における状態から推定する．経験的には，$T_4=T_3+20G$であれば十分平衡状態に達するようだが，系群によって平衡状態に十分達したと判断される年数を用いる．
 
 \subsection{MSY管理基準値}
 MSY管理基準値は，$T_4$年における漁獲量$C_{T_4}^k$の平均値($\sum_{k=1}^K C_{T_4}^k / K$)が最大になるような$\alpha$を探索的に求め，推定する．$C_{T_4}^k$は，資源量推定にBaranovの漁獲方程式を使っている場合，
 \begin{eqnarray}
-  C_{T_4}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} \frac{\alpha F_{\mathrm{cur},s}}{\alpha F_{\mathrm{cur},s}+M_{s,T_4}}
-  \exp(-\alpha F_{\mathrm{cur},s}-M_{s,T_4}) N_{s,T_4}^k v_{s,T_4}
+  C_{T_4}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} \frac{\alpha F_{\mathrm{current},s}}{\alpha F_{\mathrm{current},s}+M_{s,T_4}}
+  \exp(-\alpha F_{\mathrm{current},s}-M_{s,T_4}) N_{s,T_4}^k v_{s,T_4}
 \end{eqnarray}
 Popeの近似式を使っている場合
 \begin{eqnarray}
-  C_{T_4}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} (1-\exp(-\alpha F_{\mathrm{cur},s})) \exp(-\frac{M_{s,T_4}}{2})N_{s,T_4}^k v_{s,T_4} 
+  C_{T_4}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} (1-\exp(-\alpha F_{\mathrm{current},s})) \exp(-\frac{M_{s,T_4}}{2})N_{s,T_4}^k v_{s,T_4} 
 \end{eqnarray}
-で計算される．このときの$\alpha F_{\mathrm{cur},s}$をMSYを与えるときの漁獲係数 ($F_{\mathrm{msy},s}$)と定義する．また，$F_{s,t}^k=F_{\mathrm{msy},s}$で$K$回シミュレーションを行って将来予測したときの$t=T_4$における親魚資源量の平均($\sum_{k=1}^K S\!B_{T_4}^k /K$)が$S\!B_{\mathrm{MSY}}$ となる．
+で計算される．このときの$\alpha F_{\mathrm{current},s}$をMSYを与えるときの漁獲係数 ($F_{\mathrm{msy},s}$)と定義する．また，$F_{s,t}^k=F_{\mathrm{msy},s}$で$K$回シミュレーションを行って将来予測したときの$t=T_4$における親魚資源量の平均($\sum_{k=1}^K S\!B_{T_4}^k /K$)が$S\!B_{\mathrm{MSY}}$ となる．
 
 \subsection{その他の管理基準値}
-その他，平衡状態において特定の平均漁獲量(たとえば，MSYの10\%,60\%など)や平均親魚量(たとえば$S\!B_0$の30\%など)を達成するような管理基準値を計算する場合も同様に，$t=T_4$において平均漁獲量または親魚量が目的とする値と一致するような$\alpha$を探索的に求め，得られた漁獲係数のもとで平衡状態に達したときの平均親魚量や漁獲量を管理基準値として用いる．
+その他，平衡状態において特定の平均漁獲量(たとえば，MSYの10\%，60\%など)や平均親魚量(たとえば$S\!B_0$の30\%など)を達成するような管理基準値を計算する場合も同様に，$t=T_4$において平均漁獲量または親魚量が目的とする値と一致するような$\alpha$を探索的に求め，得られた漁獲係数のもとで平衡状態に達したときの平均親魚量を資源量の管理基準値として用いる．
 
 \section{ABC算定や目標達成確率計算のための将来予測}
-短期予測のための将来予測でも，加入誤差については，基本的に式\ref{epsilon1}--\ref{epsilon2}などから計算された$\varepsilon_t^k$を用いて計算する．一方，将来の漁獲係数は漁獲管理規則に従って毎年異なる値$F_{s,t}^k$を用いる．したがって，短期予測のための将来予測の個体群動態式は
+短期予測のための将来予測でも，加入誤差については，基本的に式\ref{epsilon1}，\ref{epsilon2}などから計算された$\varepsilon_t^k$を用いて計算する．一方，将来の漁獲係数は漁獲管理規則に従って毎年異なる値$F_{s,t}^k$を用いる．したがって，短期予測のための将来予測の個体群動態式は
 \begin{equation}
   N_{s,t}^k = \begin{cases}
-      \hat{N}_{s,t}^k \exp (\varepsilon_t^k) &     s = S_\mathrm{min} \\    
+      N_{s,t}^k \exp (\varepsilon_t^k + \kappa) &     s = S_\mathrm{min} \\    
       N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}- F_{s-1,t-1}^k )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
-      N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}- F_{s-1,t-1}^k ) + N_{s,t-1}^k  \exp(-M_{s,t-1} - \alpha F_{s,t-1}^k) &   s=S_{\mathrm{max}}
+      N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}- F_{s-1,t-1}^k ) + N_{s,t-1}^k  \exp(-M_{s,t-1} - F_{s,t-1}^k) &   s=S_{\mathrm{max}}
   \end{cases}
   \label{future_eq3}
 \end{equation}
 となる．$F_{s,t}^k$は，通常，管理の開始を$T_{3}+2$年目からと想定し，
 \begin{equation}
   F_{s,t}^k = \begin{cases}
-   F_{\mathrm{cur},s} &     t = T_3+1 \\    
-   \beta \gamma  F_{\mathrm{msy},s} = \alpha \beta \gamma F_{\mathrm{cur},s}
+   F_{\mathrm{current},s} &     t = T_3+1 \\    
+   \beta \gamma  F_{\mathrm{msy},s} = \alpha \beta \gamma F_{\mathrm{current},s}
    &     t > T_3+1 \\
   \end{cases}
   \label{future_eq3}
 \end{equation}
-と仮定する．$t=T_3+1$年目の$F_{s,t}^k$については必ずしも$F_{\mathrm{cur},s}$を用いる必要はなく，$T_3+1$年目の漁獲係数を最もよく代表しているであろう漁獲係数をあてる．$t>T_3+1$では，漁獲管理規則から計算される$\beta$，$\gamma$を$F_{msy,s}$に乗じる．漁獲管理規則における$\beta$は1以下の安全係数で一定値をとり，$\gamma$は図\ref{fig_HCR}に示された漁獲管理規則によって以下のように計算される．
+と仮定する．$t=T_3+1$年目の$F_{s,t}^k$については必ずしも$F_{\mathrm{current},s}$を用いる必要はなく，$T_3+1$年目の漁獲状況を最もよく代表していると判断される漁獲係数をあてる．$t>T_3+1$では，漁獲管理規則から計算される$\beta$，$\gamma$を$F_{\mathrm{msy},s}$に乗じる．漁獲管理規則における$\beta$は1以下の安全係数で一定値をとり，$\gamma$は図\ref{fig_HCR}に示された漁獲管理規則に従って以下のように計算される．
 \begin{eqnarray}
   \gamma =
   \begin{cases}
     1   &  S\!B_{\mathrm{limit}} < S\!B_t^k \\
-    \frac{S\!B_t^k-S\!B\_{\mathrm{ban}}}{S\!B_{\mathrm{limit}} -S\!B_{\mathrm{ban}}}  & S\!B_{\mathrm{ban}} < S\!B_t^k< S\!B_{\mathrm{limit}} \\
+    \frac{S\!B_t^k-S\!B_{\mathrm{ban}}}{S\!B_{\mathrm{limit}} -S\!B_{\mathrm{ban}}}  & S\!B_{\mathrm{ban}} < S\!B_t^k< S\!B_{\mathrm{limit}} \\
     0    &   S\!B_t^k < S\!B_{\mathrm{ban}}
   \end{cases}
 \end{eqnarray}
@@ -197,7 +203,7 @@ Popeの近似式を使っている場合
 
 ABCは通常$T_{3}+2$年目の漁獲量の平均値として算出される．資源量推定にBaranovの漁獲方程式を使っている場合には
 \begin{eqnarray}
-  C_{T_3+2}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} \frac{F_{s,T_3+2}^k}{F_{s,T_3+2}^k+M_{s,T_4}}
+  C_{T_3+2}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} \frac{F_{s,T_3+2}^k}{F_{s,T_3+2}^k+M_{s,T_3+2}}
   \exp(- F_{s,T_3+2}^k-M_{s,T_3+2}) N_{s,T_3+2}^k v_{s,T_3+2}
 \end{eqnarray}
 Popeの近似式を使っている場合には
@@ -214,8 +220,6 @@ Popeの近似式を使っている場合には
 \bibitem{johnson} Johnson KF, Council E, Thorson JT, Brooks E, Methot RD, Punt AE (2016) Can autocorrelated recruitment be estimated using integrated assessment models and how does it affect population forecasts? Fish Res 183:222--232
 \bibitem{ichinokawa} 市野川桃子・岡村 寛 (2014) VPAを用いた我が国水産資源評価の統計言語Rによる統一的検討. 水産海洋研究 78:104--113
 
-
-
 \end{thebibliography}
 
 \begin{figure}[h]
@@ -225,7 +229,7 @@ Popeの近似式を使っている場合には
 \end{figure}
 
 \begin{figure}[h]
-  \includegraphics[bb=0 0 600 300, width=13cm]{fig_HCR.png}
+  \includegraphics[bb=0 0 300 150, width=13cm]{fig_HCR.png}
   \caption{1系資源の漁獲制御ルールの模式図}
   \label{fig_HCR}
 \end{figure}
