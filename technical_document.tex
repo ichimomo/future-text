@@ -9,7 +9,7 @@
   \Large (平成31年度研究機関会議版)
 }
 \author{ABCWG}
-\date{2019/06/25}
+\date{2019/06/25 (2019/10/23 修正)}
 \maketitle
 
 \section{基本的な式と記号の説明}
@@ -128,7 +128,7 @@ $\rho$の推定については，本資料で示した手順のように，再�
   \end{cases}
   \label{future_eq2}
 \end{equation}
-ここでは$t \geq T_3$で，$t=T_3$のとき$N_t^k=N_t^{\mathrm{obs}}$，$F_t^k=F_t^{\mathrm{obs}}$とする．$\kappa$は漁獲なしのときの親魚量(初期資源量)$S\!B_0$の決定論的な値(式\ref{future_eq})と，確率的予測値(式\ref{future_eq2})の平均を一致させるためのバイアス補正項で，対数正規分布を仮定する場合には$\kappa=-0.5\sigma^2$，残差リサンプリングをおこなう場合には$-\frac{\sum_{t=T_1}^{T_2} \exp(\varepsilon_t)}{n}$となる．
+ここでは$t \geq T_3$で，$t=T_3$のとき$N_t^k=N_t^{\mathrm{obs}}$，$F_t^k=F_t^{\mathrm{obs}}$とする．$\kappa$は漁獲なしのときの親魚量(初期資源量)$S\!B_0$の決定論的な値(式\ref{future_eq})と，確率的予測値(式\ref{future_eq2})の平均を一致させるためのバイアス補正項で，対数正規分布を仮定する場合には$\kappa=-0.5\sigma^2$，残差リサンプリングをおこなう場合には$-\log( \frac{\sum_{t=T_1}^{T_2} \exp(\varepsilon_t)}{n} )$となる．
 
 管理基準値は，$\alpha$を様々に変え，十分平衡状態に達したと判断される$T_4$年における状態から推定する．経験的には，$T_4=T_3+20G$であれば十分平衡状態に達するようだが，系群によって平衡状態に十分達したと判断される年数を用いる．
 
@@ -231,13 +231,14 @@ Popeの近似式を使っている場合には
 \end{table}
 
 \begin{figure}[h]
-  \includegraphics[bb=0 0 600 300, width=13cm]{fig_resample.png}
+  \includegraphics[width=10cm]{fig_resample.png}
   \caption{将来予測における誤差分布の仮定の違い．(左) 対数正規分布の誤差を仮定した場合．(右) 残差のリサンプリングによる誤差を仮定した場合}
   \label{fig_resample}
 \end{figure}
 
 \begin{figure}[h]
-  \includegraphics[bb=0 0 300 150, width=11cm]{fig_HCR.png}
+  %  \includegraphics[bb=0 0 150 75, width=11cm]{fig_HCR.png}
+  \includegraphics[width=8cm]{fig_HCR.png}  
   \caption{1系資源の漁獲制御ルールの模式図}
   \label{fig_HCR}
 \end{figure}
