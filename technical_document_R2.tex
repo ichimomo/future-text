@@ -133,6 +133,12 @@ $\rho$の推定については，本資料で示した手順のように，再�
 \end{eqnarray}
 となる．
 
+\begin{figure}[t]
+  \includegraphics[width=10cm]{fig_resample.png}
+  \caption{将来予測における誤差分布の仮定の違い．(左) 対数正規分布の誤差を仮定した場合．(右) 残差のリサンプリングによる誤差を仮定した場合}
+  \label{fig_resample}
+\end{figure}
+
 以上より，管理基準値計算のために実施する確率的シミュレーションにおける個体群動態式は以下となる．
 \begin{equation}
   N_{s,t}^k = \begin{cases}
@@ -204,6 +210,13 @@ Popeの近似式を使っている場合には
 \end{eqnarray}
 より計算された漁獲量$C_{T_3+2}^k$の平均値$\sum_{k=1}^K \frac{C_{T_3+2}^k}{K}$がABCとして提案される．
 
+\begin{figure}[t]
+  \includegraphics[width=5cm]{fig_HCR.png}  
+  \caption{
+    1系資源の漁獲制御ルールの模式図
+  }
+  \label{fig_HCR}
+\end{figure}
 
 \section{過去にさかのぼって管理をおこなった場合のシミュレーション\label{sec:whatif}}
 
@@ -216,7 +229,15 @@ $T_5+1$年からは、過去の再生産関係から推定された再生産関�
 \item 2. $T$年の加入尾数の期待値シナリオ1と同じ方法で計算するが、加入の残差は$\varepsilon_{T}^k \sim \mathrm{Normal} (\rho \varepsilon_{T-1}^k,(1-\rho^2) \sigma^2)$とする。
 \end{itemize}
 
-また、マイワシ対馬暖流系群のように、年によって再生産関係のパラメータが異なると仮定されている場合、本シミュレーションで仮定される過去の再生産関係は、パラメータ推定のさいに仮定した同じ年に再生産関係が切り替わるとしている。
+また、マイワシ対馬暖流系群のように、年によって再生産関係のパラメータが異なると仮定されている場合、本シミュレーションで仮定される過去の再生産関係は、パラメータ推定のさいに仮定した同じ年に再生産関係が切り替わるとしている。図\ref{fig_whatif}は対馬暖流系群で過去にさかのぼったシミュレーションを実施したときの例。
+
+\begin{figure}[b]
+  \includegraphics[keepaspectratio, scale=0.17]{figs/g1_withCI.png}
+  \caption{
+    マイワシ対馬暖流系群で過去にさかのぼった場合のシミュレーションを実施した例。1990年(start\_from1990)、2000年(start\_from2000)、2005年(start\_from2005)から、通常レジームの管理基準値を使って管理を開始した3通りの結果の比較。細い実線は過去に見られた残差をそのまま用いたもの（シナリオ1）、塗りの範囲は過去の残差を確率分布からランダムに発生させたシミュレーションの90％信頼区間、太い実線はシミュレーションの結果の平均値。親魚量が禁漁水準を割っている2000年、2005年では、管理開始当初の漁獲量はゼロになったのち、親魚量が回復したのちに漁獲が再開している。
+  }
+  \label{fig_whatif}
+\end{figure}
 
 
 \begin{thebibliography}{9}
@@ -258,19 +279,6 @@ $T_5+1$年からは、過去の再生産関係から推定された再生産関�
   \end{tabular}
   \label{table_definition} 
 \end{table}
-
-\begin{figure}[h]
-  \includegraphics[width=10cm]{fig_resample.png}
-  \caption{将来予測における誤差分布の仮定の違い．(左) 対数正規分布の誤差を仮定した場合．(右) 残差のリサンプリングによる誤差を仮定した場合}
-  \label{fig_resample}
-\end{figure}
-
-\begin{figure}[h]
-  %  \includegraphics[bb=0 0 150 75, width=11cm]{fig_HCR.png}
-  \includegraphics[width=8cm]{fig_HCR.png}  
-  \caption{1系資源の漁獲制御ルールの模式図}
-  \label{fig_HCR}
-\end{figure}
 
 \end{document}
 
