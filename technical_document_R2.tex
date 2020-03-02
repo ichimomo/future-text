@@ -112,7 +112,7 @@
 \end{eqnarray}
 同時推定によるパラメータ推定は，最尤推定値を得ることが難しい，推定値にバイアスが生じる，推定値が不安定になるなどの問題点がある\cite{johnson}．特に，HSを用いた時に局所解が複数存在し，推定値がさらに不安定になる現象が確認されている(未発表)。
 
-$\rho$の推定手法として2段階推定を使うか、同時推定を使うかは、パラメータの安定性や局所解の存在、ブートストラップ等、一連のモデル診断を通じて判断する。ただし、自己相関係数が非常に大きい場合、二段階推定は真の自己相関係数を過小推定する傾向がある(図\ref{fig_rho})。そのため、自己相関が非常に大きいと思われ、それが加入変動に大きく影響を与える可能性がある場合、同時推定を用いたほうが加入変動の不確実性をより正確に捉えられると考えられる。ただし、その場合でも、推定パラメータの安定性を十分確認したり、MSEなどを用いて誤りに対する影響を評価する必要はある。
+$\rho$の推定手法として2段階推定を使うか、同時推定を使うかは、パラメータの安定性や局所解の存在、ブートストラップ等、一連のモデル診断を通じて判断する。ただし、自己相関係数が非常に大きい場合、二段階推定は真の自己相関係数を過小推定する傾向がある(\cite{rho_simulation})。そのため、自己相関が非常に大きいと思われ、それが加入変動に大きく影響を与える可能性がある場合、同時推定を用いたほうが加入変動の不確実性をより正確に捉えられると考えられる。ただし、その場合でも、推定パラメータの安定性を十分確認したり、MSEなどを用いて誤りに対する影響を評価する必要はある。
 
 自己相関の影響を除いたときの加入の残差の分散は$(1-\rho^2) \sigma^2$で，自己相関でも説明しきれなかったランダムな加入変動の大きさを示す．平成31年度研究機関会議でSDとして示されている数値は$\sqrt{(1-\rho^2) \sigma^2}$に対応する．
 
@@ -313,6 +313,7 @@ $T_5+1$年からは、過去の再生産関係から推定された再生産関�
 \bibitem{thorson} Thorson JT, Jensen OP, Zipkinc EF (2014) How variable is recruitment for exploited marine fishes? Can J Fish Aquat Sci 71:973--983
 \bibitem{johnson} Johnson KF, Council E, Thorson JT, Brooks E, Methot RD, Punt AE (2016) Can autocorrelated recruitment be estimated using integrated assessment models and how does it affect population forecasts? Fish Res 183:222--232
 \bibitem{R} R Core Team (2018) R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/
+\bibitem{rho_simulation} FRA-SA2020-BRP01-06. Momoko Ichinokawa, Shota Nishijima, and Hiroshi Okamura (2020) シミュレーションを用いた自己相関係数の同時推定手法の推定バイアス評価. 
   
 %\bibitem{ichinokawa} 市野川桃子・岡村 寛 (2014) VPAを用いた我が国水産資源評価の統計言語Rによる統一的検討. 水産海洋研究 78:104--113
 
