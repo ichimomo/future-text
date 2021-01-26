@@ -6,9 +6,9 @@
 \begin{document}
 
 
-\title{{\normalsize FRA-SA-2020-ABCWG0?-0?}\\
+\title{{\normalsize FRA-SA-2021-ABCWG1-02}\\
   再生産関係の推定・管理基準値計算・将来予測シミュレーションに関する技術ノート \\
-  \Large (2020年9月2日版)
+  \Large (令和３年度)
 }
 \author{ABCWG}
 \date{\today}
@@ -226,7 +226,7 @@ ABCは式\ref{ABC_eq1} 式\ref{ABC_eq2}により、資源評価最終年$T_3$年
 
 資源評価の誤差がない理想的な条件においても、再生産関係を一つに決定するための十分な情報が得られない場合がある。また、選択した再生産関係とは異なる再生産関係がもし真であった場合、バイアスのある再生産関係から管理基準値やABCがバイアスする恐れがある。そこで、再生産関係の選択のミスから生じる管理基準値やABCのリスクを評価するため、再生産関係の選択のミスがあるような状況を想定したシミュレーションを実施する。
 
-資源量推定や管理誤差の不確実性を考慮したシミュレーションは一般に管理戦略評価(Management Strategy Evaluation, MSE)と呼ばれているが（引用）、本シミュレーションでは不確実性を考慮する範囲が狭いため、あくまで簡易的なMSEである。本MSEで正しいと仮定する数値と考慮する不確実性を以下にまとめた。ここでは、将来予測の任意の年$T_6$年における漁獲量を決定する場合である。
+資源量推定や管理誤差の不確実性を考慮したシミュレーションは一般に管理戦略評価(Management Strategy Evaluation, MSE)と呼ばれているが（\cite{punt}）、本シミュレーションでは不確実性を考慮する範囲が狭いため、あくまで簡易的なMSEである。本MSEで正しいと仮定する数値と考慮する不確実性を以下にまとめた。ここでは、将来予測の任意の年$T_6$年における漁獲量を決定する場合である。
 \begin{itemize}
 \item 正しく知っているとするもの：$T_6-1$年と$T_6$年の年齢別体重・自然死亡係数・成熟率、$T_6-1$年の年齢別漁獲係数
 \item 間違った再生産関係を用いた場合に間違う値：$T_6-1$年と$T_6$年の加入尾数($N_{S_{\mathrm{min}},T_6 -1}, N_{S_{\mathrm{min}},T_6}$)、$S\!B_{\mathrm{limit}}$・$S\!B_{\mathrm{ban}}$(つまり$\gamma$)・$F_{\mathrm{msy},s}$、ひいては$T_6-1$年ABC($ABC_{T_6-1}$)。真の値に対して、将来予測による推定値を$N_{S_{\mathrm{min}},T_6-1}', N_{S_{\mathrm{min}},T_6}'$）、$S\!B_{\mathrm{limit}}'$・$S\!B_{\mathrm{ban}}'$・$F_{\mathrm{msy},s}'$・$\gamma'$・$ABC_{T_6}'$とする。
@@ -330,7 +330,8 @@ Popeの近似式を使っている場合には
 
 \begin{thebibliography}{9}
   \bibitem{hockey} Clark CW, Charles AT, Beddington JR, Mangel M (1985) Optimal capacity decisions in a developing fishery. Marine Resource Economics 2:25--53.
-\bibitem{beverton} Beverton RJH, Holt SJ (1957) On the Dynamics of Exploited Fish Populations. Her Majesty’s Stationary Office, London.
+  \bibitem{beverton} Beverton RJH, Holt SJ (1957) On the Dynamics of Exploited Fish Populations. Her Majesty’s Stationary Office, London.
+  \bibitem{punt} Punt et al (2016) Management strategy evaluation: Best practives. Fish and Fisheries. 17:303--334.
 \bibitem{ricker} Ricker WE (1954) Stock and recruitment. Journal of Fisheries Research Board of Canada 11:559--623.
 \bibitem{thorson} Thorson JT, Jensen OP, Zipkinc EF (2014) How variable is recruitment for exploited marine fishes? Can J Fish Aquat Sci 71:973--983
 \bibitem{johnson} Johnson KF, Council E, Thorson JT, Brooks E, Methot RD, Punt AE (2016) Can autocorrelated recruitment be estimated using integrated assessment models and how does it affect population forecasts? Fish Res 183:222--232
