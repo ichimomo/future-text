@@ -8,16 +8,16 @@
 
 \title{{\normalsize FRA-SA-2021-ABCWG01-02}\\
   再生産関係の推定・管理基準値計算・将来予測シミュレーションに関する技術ノート \\
-  \Large (令和３年度)
+  \Large (令和4年度)
 }
 \author{ABCWG}
 \date{\today}
 \maketitle
 
-\section{令和2年度版からの追加点}
+\section{令和3年度版からの追加点}
 \begin{itemize}
-\item 将来予測について漁獲量一定方策、TACの取り残し分を来年に付け替える場合のシミュレーション結果を追加
-\item プラスグループを考慮しない場合の個体群動態式を追加
+\item HSを仮定するときに尤度が同じパラメータ範囲が存在するときの対処について追記(\ref{hsissue}) 
+\item 
 \end{itemize}
 
 \section{基本的な式と記号の説明}
@@ -124,6 +124,45 @@ $\rho$の推定手法として2段階推定を使うか、同時推定を使う�
 
 自己相関の影響を除いたときの加入の残差の分散は$(1-\rho^2) \sigma^2$で，自己相関でも説明しきれなかったランダムな加入変動の大きさを示す．平成31年度研究機関会議でSDとして示されている数値は$\sqrt{(1-\rho^2) \sigma^2}$に対応する．
 
+\subsection{HSを用いるときの注意点\label{hsissue}}
+連続的に変化しないHS再生産関係においては$a$, $b$のパラメータ推定の際、初期値の値によって異なるパラメータが推定され、また、その目的関数の値がほとんど同じとなるような状況が見られることがある（図\ref{fig_hsissue}）。特にHSで最小絶対値法を用いる場合に生じやすい。このような状況の場合、推定パラメータが初期値に依存し、単独の推定では頑健で再現性のあるパラメータ推定値を得られない問題点がある。このような状況が生じた場合には、図\ref{fig_hsissue}のように初期値を変えた解析を実施し、推定されたパラメータの中央値に最も近いパラメータを得る初期値を利用して推定したパラメータ推定結果を用いることにする。
+
+\begin{figure}[t]
+  \includegraphics[width=13cm]{example_HS_issue.jpg}
+  \caption{HSに解の不安定性がある場合の例。最尤推定値と思われる値周辺にランダムに初期値を設定してパラメータ推定したときに推定されたHSのパラメータ$b$(x軸)とそのときの対数尤度（y軸、左）、試行した中で得られた最大の対数尤度と個々の推定で得られた対数尤度との差の絶対値の対数（log10）をとったもの（y軸、右)。右図のy軸は差のlog10をとったものなので、-3は最大対数尤度との差が0.001であることを示す。図の黒点と赤点は、異なる乱数のシードからランダムに初期値を変えてそれぞれ500回繰り返し計算を行った場合の結果。左図で示すように尤度が高いb=5万トン付近では尤度の値がほとんど変わらないパラメータの範囲が存在する。右図で、尤度の差の対数をとると$10-6$以下の差で尤度の違いが見られるが、尤度の傾向はスムーズではなく、高い初期値依存性を示唆する。}
+  \label{fig_hsissue}
+\end{figure}
+
+% 以下、上記の図を得るためのRコード
+\if0 (
+library(frasyr)
+library(tidyverse)
+res4 <- get.SRdata(res_vpa) %>%
+  dplyr::filter(year%in%1988:2000) %>%
+  fit.SR(SR="HS", method="L1", AR=0) %>%
+   check.SRfit(n=1000, seed=10)
+
+res5 <- get.SRdata(res_vpa) %>%
+   dplyr::filter(year%in%1988:2000) %>%
+    fit.SR(SR="HS", method="L1", AR=0) %>%
+    check.SRfit(n=1000, seed=1)
+
+  jpeg('example_HS_issue.jpg',width=800)
+  par(mfrow=c(1,2))
+  plot(res4$par_list0[,2],res4$loglik,col=1,pch=20,xlab="b in HS", ylab="log likelihood)")
+  points(res5$par_list0[,2],res5$loglik,col=2,pch=3)
+  
+  plot(res4$par_list0[,2],log10(res4$loglik_diff),col=1,pch=20,xlab="b in HS", ylab="log10(abs(loglik-max(loglik)))")
+  points(res5$par_list0[,2],log10(res5$loglik_diff),col=2,pch=3)    
+  dev.off()
+  
+  res5$par_list0[which.min(res5$loglik_diff),]
+  res4$par_list0[which.min(res4$loglik_diff),]
+  
+  rbind(res5$optimum$pars,
+        res4$optimum$pars)
+)\fi
+
 \section{管理基準値の推定}
 管理基準値は，推定された再生産関係パラメータと確率的な加入変動等のもとで，漁獲係数を一定にした場合の確率的な平衡状態(時系列的に平均値が一定)となるときの漁獲量や資源量の平均値などを使って推定する．通常は，近年の代表的な年齢別漁獲係数$F_{\mathrm{current},s}$に対して，選択率を保ったまま一律に漁獲圧を削減または増加させるような漁獲係数一定のシナリオを想定する．この場合の将来の漁獲係数は$F_{\mathrm{current},s}$に特定の乗数$\alpha$を乗じた$\alpha F_{\mathrm{current},s}$となる．ここで$1-\alpha$は，例えば$\alpha<1$の場合，目的とする管理基準値を得るために削減すべき漁獲努力量の削減率と解釈される．年齢別漁獲係数$F_{\mathrm{current},s}$は，通常，資源評価最終年を含む直近$l$年分の年齢別漁獲係数の平均値が用いられ，以下のように計算される．
 \begin{eqnarray}
@@ -184,7 +223,7 @@ Popeの近似式を使っている場合
 \end{eqnarray}
 で計算される．このときの平均漁獲量を$\mathrm{MSY}$, $\alpha F_{\mathrm{current},s}$を$F_{\mathrm{msy},s}$と定義する．また，$F_{s,t}^k=F_{\mathrm{msy},s}$で$K$回シミュレーションを行ったときの$t=T_4$における親魚資源量の平均($\sum_{k=1}^K S\!B_{T_4}^k /K$)が$S\!B_{\mathrm{msy}}$，$\mathrm{MSY}/ \sum_{k=1}^K B_{T_4}^k K^{-1}$をMSYを与える漁獲率($U_{\mathrm{msy}}$)とする．$K$は乱数の違いによって推定値が大きく変わらないくらい十分に大きい数を用いる（自己相関なしの場合は最低2000回，ありの場合は1万回以上が望ましい）．
 
-$F_{\mathrm{msy},s}$は年齢別の漁獲係数のベクトルとして与えられ，特定の選択率を前提する．そのため，神戸プロットなどのために，過去に見られた年齢別漁獲係数$F_{t,s}^{\mathrm{obs}}$が$F_{\mathrm{msy},s}$に比べてどの程度大きかった・小さかったか($F/F_{\mathrm{msy}}$)を計算するためには，MSY計算で前提とされた選択率と過去の選択率の違いを考慮する必要がある．具体的には$F_{\mathrm{msy},s}$のときのSPRに一致するような$\alpha F_{t,s}^{\mathrm{obs}}$を求め，$1/\alpha=F/F_{\mathrm{msy}}$と定義する．
+$F_{\mathrm{msy},s}$は年齢別の漁獲係数のベクトルとして与えられ，特定の選択率を前提する．そのため，神戸プロットなどのために，過去に見られた年齢別漁獲係数$F_{t,s}^{\mathrm{obs}}$が$F_{\mathrm{msy},s}$に比べてどの程度大きかった・小さかったか($F/F_{\mathrm{msy}}$)を計算するためには，MSY計算で前提とされた選択率と過去の選択率の違いを考慮する必要がある．具体的には$F_{\mathrm{msy},s}$のときのSPRに一致するような$x F_{t,s}^{\mathrm{obs}}$を求め，$1/x=F/F_{\mathrm{msy}}$と定義する．
 
 \subsection{その他の管理基準値}
 その他，平衡状態において特定の平均漁獲量(たとえば，限界管理基準値の標準値となるMSYの60\%や，禁漁水準を与えるMSYの10\%など)や平均親魚量(たとえば$S\!B_0$の30\%など)を達成するような管理基準値を計算する場合も同様に，$t=T_4$において平均漁獲量または親魚量が目的とする値と一致するような$\alpha$を探索的に求め，得られた漁獲係数のもとで平衡状態に達したときの平均親魚量を資源量の管理基準値として用いる．
