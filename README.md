@@ -3,8 +3,8 @@
 - 年度ごとにバージョンが異なります。
    - H31年度版 https://github.com/ichimomo/future-text/blob/master/technical_document_H31.pdf
    - 令和2年版 https://github.com/ichimomo/future-text/blob/master/technical_document_R2.pdf
-   - 最新版は20200902版 https://github.com/ichimomo/future-text/blob/master/technical_document_20200902.pdf (TACの繰り越し設定する場合のテキストを追加)
-   
+   - 令和3年版　https://github.com/ichimomo/future-text/blob/master/technical_document_R3.pdf
+      
 --- 
 
 frasyr_tool群の全体説明は[こちら](https://ichimomo.github.io/main/)
