@@ -17,7 +17,7 @@
 \section{令和3年度版からの追加点}
 \begin{itemize}
 \item HSを仮定するときに尤度が同じパラメータ範囲が存在するときの対処について追記(\ref{hsissue}) 
-\item 
+\item Shepherd, Cushing の再生産関係について追記(\ref{SRother})
 \end{itemize}
 
 \section{基本的な式と記号の説明}
@@ -56,6 +56,25 @@
 %\end{eqnarray}
 
 %式\ref{BH2},\ref{RI2}はパラメータbがHSのときのパラメータbと同じ単位を持つため，BH，RIの当てはめにおいては，今後は式\ref{BH2}，\ref{RI2}の使用が好ましい．
+
+\subsubsection*{その他の再生産関係式\label{SRother}}
+その他の再生産関係式についても使用についての十分な科学的根拠と合意があれば使用できる。たとえば、Shepherd (引用, 式\ref{SH})、Cusing (引用, 式\ref{CU})などの再生産関係式がある。
+\begin{eqnarray}
+  \mathrm{R}(S\!B_{t}|a,b,\gamma)=\frac{a S\!B_{t-S_{\mathrm{min}}}}{1 + b (S\!B_{t-S_{\mathrm{min}}})^\gamma}
+  \label{SH}
+\end{eqnarray}
+
+\begin{eqnarray}
+  \mathrm{R}(S\!B_{t}|a,b) = a S\!B_{t-S_{\mathrm{min}}}^b
+  \label{CU}
+\end{eqnarray}
+
+また、Hockey-Stick型の再生産関係は折れ点の部分で微分不可能であるため、パラメータの最尤推定が難しい場合がある。それを解決するために、連続的なHockey-Stick型の再生産関係としてMesnil (引用, 式\ref{ME})も提案されている。この場合のパラメータ$\gamma$の推定は難しいため、適当な値を固定して与えるのが一般的である。
+
+\begin{eqnarray}
+  \mathrm{R}(S\!B_{t}|a,b,\gamma) = 0.5 a (S\!B_{t-S_{\mathrm{min}}} + \sqrt{b^2+0.25\gamma^2}-\sqrt{(S\!B_{t-S_{\mathrm{min}}}-b)^2+0.25\gamma^2}
+  \label{ME}
+\end{eqnarray}
 
 \subsubsection*{個体群動態の式}
 個体群動態の決定論的な基本式は以下のような年齢構造モデルで表す．
