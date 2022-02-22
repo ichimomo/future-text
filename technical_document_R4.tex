@@ -104,7 +104,7 @@
 \subsection{パラメータ$a$，$b$の推定\label{estab}}
 観測値と再生産関係式からの予測値との残差 $\varepsilon_t \, (T_1 \leq t \leq T_2)$を
 \begin{eqnarray}
-  \varepsilon_t = \log (N_{S_{\mathrm{min}},t}^{\mathrm{obs}}) - \log \mathrm{R}(S\!B_{t-S_{\mathrm{min}}}^{-mathrm{obs}}|a,b)
+  \varepsilon_t = \log (N_{S_{\mathrm{min}},t}^{\mathrm{obs}}) - \log \mathrm{R}(S\!B_{t-S_{\mathrm{min}}}^{\mathrm{obs}}|a,b)
 \end{eqnarray}
 と定義し，最小二乗法の場合には
 \begin{eqnarray}
@@ -116,7 +116,7 @@
 \end{eqnarray}
 を最小化することで，パラメータ$a$，$b$を推定する．最小絶対値法の方が，外れ値の影響を受けにくく，頑健な推定値が得られやすい．AIC等の情報量規準で使用される対数尤度は，最小二乗法の場合は正規分布，最小絶対値法の場合はラプラス分布を用いて計算される．どちらの最適化法を用いた場合でも，残差の標準偏差$\sigma$は
 \begin{eqnarray}
-  \sigma = \sqrt{\frac{1}{n} \sum_{t=T_1}^{T_2} \varepsilon_t^2}
+  \sigma = \sqrt{\frac{1}{T_2-T_1+1} \sum_{t=T_1}^{T_2} \varepsilon_t^2}
 \end{eqnarray}
 と定義する．
 
