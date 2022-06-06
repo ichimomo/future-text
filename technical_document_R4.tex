@@ -6,18 +6,19 @@
 \begin{document}
 
 
-\title{{\normalsize FRA-SA-2021-ABCWG01-02}\\
+\title{{\normalsize FRA-SA-2022-ABCWG02-02} \\
   再生産関係の推定・管理基準値計算・将来予測シミュレーションに関する技術ノート \\
-  \Large (令和4年度)
+  {\Large (令和4年度)}
 }
-\author{ABCWG}
+\author{資源評価高度化作業部会}
 \date{\today}
 \maketitle
 
-\section{令和3年度版からの追加点}
+\section{令和3年度版からの変更・追加点}
 \begin{itemize}
 \item HSを仮定するときに尤度が同じパラメータ範囲が存在するときの対処について追記(\ref{hsissue}) 
 \item Shepherd, Cushing の再生産関係について追記(\ref{SRother})
+\item 1Bルールのときに用いる生物学的管理基準値や経験的な管理基準値について追記(\ref{1Brule})
 \end{itemize}
 
 \section{基本的な式と記号の説明}
@@ -240,12 +241,36 @@ Popeの近似式を使っている場合
 \begin{eqnarray}
   C_{T_4}^k=\sum_{s=S_{\mathrm{min}}}^{S_{\mathrm{max}}} (1-\exp(-\alpha F_{\mathrm{current},s})) \exp(-\frac{M_{s,T_4}}{2})N_{s,T_4}^k v_{s,T_4} 
 \end{eqnarray}
-で計算される．このときの平均漁獲量を$\mathrm{MSY}$, $\alpha F_{\mathrm{current},s}$を$F_{\mathrm{msy},s}$と定義する．また，$F_{s,t}^k=F_{\mathrm{msy},s}$で$K$回シミュレーションを行ったときの$t=T_4$における親魚資源量の平均($\sum_{k=1}^K S\!B_{T_4}^k /K$)が$S\!B_{\mathrm{msy}}$，$\mathrm{MSY}/ \sum_{k=1}^K B_{T_4}^k K^{-1}$をMSYを与える漁獲率($U_{\mathrm{msy}}$)とする．$K$は乱数の違いによって推定値が大きく変わらないくらい十分に大きい数を用いる（自己相関なしの場合は最低2000回，ありの場合は1万回以上が望ましい）．
+で計算される．このときの平均漁獲量を$\mathrm{MSY}$, $\alpha F_{\mathrm{current},s}$を$F_{\mathrm{msy},s}$(F$_{\mathrm{msy}}$)と定義する．また，$F_{s,t}^k=F_{\mathrm{msy},s}$で$K$回シミュレーションを行ったときの$t=T_4$における親魚資源量の平均($\sum_{k=1}^K S\!B_{T_4}^k /K$)が$S\!B_{\mathrm{msy}}$，$\mathrm{MSY}/ \sum_{k=1}^K B_{T_4}^k K^{-1}$をMSYを与える漁獲率($U_{\mathrm{msy}}$)とする．$K$は乱数の違いによって推定値が大きく変わらないくらい十分に大きい数を用いる（自己相関なしの場合は最低2000回，ありの場合は1万回以上が望ましい）．
 
 $F_{\mathrm{msy},s}$は年齢別の漁獲係数のベクトルとして与えられ，特定の選択率を前提する．そのため，神戸プロットなどのために，過去に見られた年齢別漁獲係数$F_{t,s}^{\mathrm{obs}}$が$F_{\mathrm{msy},s}$に比べてどの程度大きかった・小さかったか($F/F_{\mathrm{msy}}$)を計算するためには，MSY計算で前提とされた選択率と過去の選択率の違いを考慮する必要がある．具体的には$F_{\mathrm{msy},s}$のときのSPRに一致するような$x F_{t,s}^{\mathrm{obs}}$を求め，$1/x=F/F_{\mathrm{msy}}$と定義する．
 
 \subsection{その他の管理基準値}
 その他，平衡状態において特定の平均漁獲量(たとえば，限界管理基準値の標準値となるMSYの60\%や，禁漁水準を与えるMSYの10\%など)や平均親魚量(たとえば$S\!B_0$の30\%など)を達成するような管理基準値を計算する場合も同様に，$t=T_4$において平均漁獲量または親魚量が目的とする値と一致するような$\alpha$を探索的に求め，得られた漁獲係数のもとで平衡状態に達したときの平均親魚量を資源量の管理基準値として用いる．
+
+\subsection{再生産関係に基づかない生物学的管理基準値\label{1Brule}}
+
+再生産関係の不確実性が高い場合には\%SPRやYPRなど、再生産関係の仮定を用いなくても計算できる生物学的管理基準値から管理基準値の提案をすることもできる（1Bルール）．\%SPRとYPRは加入1尾あたりが生涯に期待される個体数($N_{s}$, numbers per recruit, NPR)から、加入1尾あたりの親魚量(Spawning per recruit, SPR)や漁獲量(yield per recruit, YPR)を計算することで定義される。NPR($N_{s}$)は漁獲係数$F_{s}$、自然死亡係数$M_{s}$のもとで、
+\begin{equation}
+  N_{s} = \begin{cases}
+    1 &     s = S_\mathrm{min} \\    
+    N_{s-1}  \exp(-M_{s-1}- F_{s} )  &    S_\mathrm{min} < s < \infty
+  \end{cases}
+  \label{spr}
+\end{equation}
+として計算される。このときの$\mathrm{SPR}(F_{s})$は$\sum_{s=s\mathrm{min}}^{\infty} N_{s}w_sm_s$となる。また、漁獲がない場合のSPR（$\mathrm{SPR}(0)$）に対する割合（\%$\mathrm{SPR}(F_{s})=\frac{\mathrm{SPR}(F_{s})}{\mathrm{SPR}(0)} \times 100$が $x$\%となるような$F_s$をF$_{x\%SPR}$と呼ぶ。同様に、$F_{s}$のもとでのYPR($F_{s}$)は、Baranovの漁獲方程式を用いる場合には
+\begin{eqnarray}
+  \sum_{s=S_{\mathrm{min}}}^{\infty} \frac{F_{s}}{F_{s}+M_{s}} \exp(- F_{s}-M_{s}) N_{s} 
+\end{eqnarray}
+Popeの近似式を使っている場合には
+\begin{eqnarray}
+  \sum_{s=S_{\mathrm{min}}}^{\infty} (1-\exp(- F_{s})) \exp(-\frac{M_{s}}{2}) N_{s}
+\end{eqnarray}
+から計算される。F$_{\mathrm{max}}$はYPR($F_s$)を最大にするような$F_{s}$として定義される。F$_{\mathrm{0.1}}$はYPR($F_s$)関数の傾きが原点におけるYPR($F_s$)の傾きの1/10となるときの$F_s$として定義される。これらの漁獲係数をもとにした管理基準値が、1BルールでF$_{\mathrm{msy}}$の代替値として提案される。また、上のSPR, YPRの定義式における$F_s, w_s, M_s$はすべて時間の次元$t$が省略されているが、$F_s, w_s, M_s$が時間によって変化する場合には、適宜適切なパラメータを用いることとする。
+
+また、1Bルールのもとでの将来予測では、再生産関係が不明なため、親が減ると子が減るような親子関係が仮定されず、将来の加入尾数が親魚量によらず一定になるような加入で将来予測が実施される。ただし、加入の確率的な変動を表現するため、加入の確率分布としては過去に観測された加入尾数のリサンプリングや対数正規分布などが仮定される。将来予測における加入の平均尾数が${\bar N_\mathrm{S_{min}}}$で、F$_{x\%\mathrm{SPR}}$が$F_\mathrm{msy}$の代替値であるとき、$S\!B_{\mathrm{msy}}$の代替値をSPR(F$_{x\%SPR}) \times {\bar N_\mathrm{S_{min}}}$と定義する。また、漁獲がない場合の親魚資源量$S\!B_{0}$の代替値は$\mathrm{SPR}(0) \times \bar{R}$となる。
+
+限界管理基準値の代替値は$S\!B_{\mathrm{min}}$（過去最小親魚量）または$S\!B_{0}$の代替値の10\%程度の値が用いられる。ここで、$S\!B_{\mathrm{min}}=\min_{t=1,...,T_3}{S\!B_t}$である。
 
 \section{ABC算定や目標達成確率計算のための将来予測}
 漁獲管理規則のもとでの中長期的な将来予測でも，加入誤差については，基本的に式\ref{epsilon1}，\ref{epsilon2}などから計算された$\varepsilon_t^k$を用いて計算する．一方，将来の漁獲係数は漁獲管理規則に従って毎年異なる値$F_{s,t}^k$を用いる．したがって，短期予測のための将来予測の個体群動態式は
