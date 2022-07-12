@@ -33,6 +33,7 @@
   \label{HS}
 \end{equation}
 ただし，親魚量と加入量が線形関係の場合には過去最大親魚量をHSの折れ点と仮定する．一方，観察された親魚量の範囲で加入がほぼ一定となる場合には，HSの折れ点を過去最小親魚量とする．
+結果としてHSの折れ点($b$)が過去最小親魚量または過去最大親魚量となった場合，$b$は仮定値をあてていることになるが，$b$を過去最小親魚量から過去最大親魚量の範囲で探索した結果としての推定結果であると考え，とみなし，AICなどの情報量基準はどのような場合でも$a$, $b$については2パラメータ分が推定されているものとして計算した．
 
 \subsubsection*{ベバートン・ホルト型再生産関係(BH)}
 \begin{eqnarray}
@@ -214,8 +215,8 @@ res5 <- get.SRdata(res_vpa) %>%
 \begin{equation}
   N_{s,t}^k = \begin{cases}
     \mathrm{R}(S\!B_{t}^k|a,b) \exp (\varepsilon_t^k + \kappa) &     s = S_\mathrm{min} \\    
-    N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{current},s} )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
-    N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{current},s} ) + N_{s,t-1}^k  \exp(-M_{s,t-1} - \alpha F_{\mathrm{current},s} ) &   s=S_{\mathrm{max}}
+    N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{current},s-1} )  &    S_\mathrm{min} < s < S_\mathrm{max} \\
+    N_{s-1, t-1}^k  \exp(-M_{s-1,t-1}-\alpha F_{\mathrm{current},s-1} ) + N_{s,t-1}^k  \exp(-M_{s,t-1} - \alpha F_{\mathrm{current},s} ) &   s=S_{\mathrm{max}}
   \end{cases}
   \label{future_eq2}
 \end{equation}
@@ -254,7 +255,7 @@ $F_{\mathrm{msy},s}$は年齢別の漁獲係数のベクトルとして与えら
 \begin{equation}
   N_{s} = \begin{cases}
     1 &     s = S_\mathrm{min} \\    
-    N_{s-1}  \exp(-M_{s-1}- F_{s} )  &    S_\mathrm{min} < s < \infty
+    N_{s-1}  \exp(-M_{s-1}- F_{s-1} )  &    S_\mathrm{min} < s < \infty
   \end{cases}
   \label{spr}
 \end{equation}
